@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <conio.h>
 #include <windows.h>
+#include <math.h>
 using namespace std;
 #define TECLA_ARRIBA 72
 #define TECLA_ABAJO 80
@@ -10,16 +11,20 @@ using namespace std;
 
 // Prototipos de funciones
 void LlenarArregloQuickSort(int A[dim]);
+void Recursion();
+void Permuta();
 void Quicksort(int A[dim], int primero, int ultimo);
 void mostrarArreglo(int A[dim], int tamanio);
 void Menu_Principal();
 void gotoxy(int x, int y);
 int Menu(const char *titulo, const char *opciones[], int tamanio);
 void Induccion();
+
 void CalcularCombinacion();
 void BusquedaSecuencial();
 unsigned long long factorial(int num);
 unsigned long long combinacion(int n, int r);
+
 
 int main()
 {
@@ -97,13 +102,21 @@ void Menu_Principal()
         switch (opcion)
         {
         case 1:
+<<<<<<< HEAD
             // Placeholder para Permutacion
+=======
+            Permuta();
+>>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
             break;
         case 2:
             CalcularCombinacion();
             break;
         case 3:
+<<<<<<< HEAD
             // Placeholder para Recursion
+=======
+            Recursion();
+>>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
             break;
         case 4:
             Induccion();
@@ -235,7 +248,11 @@ unsigned long long combinacion(int n, int r)
     return factorial(n) / (factorial(r) * factorial(n - r));
 }
 
+<<<<<<< HEAD
 // Función para calcular y mostrar las combinaciones
+=======
+
+>>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
 void CalcularCombinacion()
 {
     int n, r;
@@ -294,5 +311,8 @@ void BusquedaSecuencial()
     else
     {
         cout << "El numero " << numero << " no se encuentra en el arreglo." << endl;
+
+
+
     }
 }
