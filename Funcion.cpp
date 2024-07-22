@@ -19,7 +19,7 @@ void Menu_Principal();
 void gotoxy(int x, int y);
 int Menu(const char *titulo, const char *opciones[], int tamanio);
 void Induccion();
-
+unsigned long long factorial(int num);
 void CalcularCombinacion();
 void BusquedaSecuencial();
 unsigned long long factorial(int num);
@@ -102,21 +102,13 @@ void Menu_Principal()
         switch (opcion)
         {
         case 1:
-<<<<<<< HEAD
-            // Placeholder para Permutacion
-=======
             Permuta();
->>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
             break;
         case 2:
             CalcularCombinacion();
             break;
         case 3:
-<<<<<<< HEAD
-            // Placeholder para Recursion
-=======
             Recursion();
->>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
             break;
         case 4:
             Induccion();
@@ -231,7 +223,7 @@ void Induccion()
     cout << "Volviendo al menu principal";
 }
 
-// Función para calcular el factorial de un número
+// Función para calcular factorial
 unsigned long long factorial(int num)
 {
     if (num == 0)
@@ -242,17 +234,14 @@ unsigned long long factorial(int num)
     return result;
 }
 
+
 // Función para calcular las combinaciones (nCr)
 unsigned long long combinacion(int n, int r)
 {
     return factorial(n) / (factorial(r) * factorial(n - r));
 }
 
-<<<<<<< HEAD
 // Función para calcular y mostrar las combinaciones
-=======
-
->>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
 void CalcularCombinacion()
 {
     int n, r;
@@ -314,5 +303,68 @@ void BusquedaSecuencial()
 
 
 
+    }
+}
+
+
+// Función recursiva para calcular el n-ésimo número de Fibonacci
+long long fibonacci(int n) {
+    if (n == 0) return 0; // Caso base 1
+    if (n == 1) return 1; // Caso base 2
+    return fibonacci(n - 1) + fibonacci(n - 2); // Paso recursivo
+}
+
+void Recursion() {
+    int n;
+    cout << "Ingrese el valor de n para calcular el n-ésimo número de Fibonacci: ";
+    cin >> n;
+
+    // Verificar que el usuario ingrese un número no negativo
+    if (n < 0) {
+        cout << "Por favor, ingrese un número no negativo." << std::endl;
+    } else {
+        cout << "El " << n << "-ésimo número de Fibonacci es: " << fibonacci(n) << endl;
+    }
+}
+
+
+// Permutaciones normales
+long long permutacionNormal(int n, int r) {
+    return factorial(n) / factorial(n - r);
+}
+// Permutaciones circulares
+long long permutacionCircular(int n) {
+    return factorial(n - 1);
+}
+// Permutaciones con repetición
+long long permutacionConRepeticion(int n, int r) {
+    return pow(n, r);
+}
+
+void Permuta() {
+    int opcion, n, r;
+
+    std::cout << "Seleccione el tipo de permutación:\n";
+    std::cout << "1. Normal\n2. Circular\n3. Con repetición\n";
+    std::cin >> opcion;
+
+    switch (opcion) {
+        case 1:
+            std::cout << "Ingrese n y r: ";
+            std::cin >> n >> r;
+            std::cout << "Permutación normal: " << permutacionNormal(n, r) << std::endl;
+            break;
+        case 2:
+            std::cout << "Ingrese n: ";
+            std::cin >> n;
+            std::cout << "Permutación circular: " << permutacionCircular(n) << std::endl;
+            break;
+        case 3:
+            std::cout << "Ingrese n y r: ";
+            std::cin >> n >> r;
+            std::cout << "Permutación con repetición: " << permutacionConRepeticion(n, r) << std::endl;
+            break;
+        default:
+            std::cout << "Opción no válida." << std::endl;
     }
 }
