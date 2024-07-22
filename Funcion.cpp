@@ -13,8 +13,13 @@ void Quicksort(int A[dim], int primero, int ultimo);
 void mostrarArreglo(int A[dim], int tamanio);
 void Menu_Principal();
 void gotoxy(int x, int y);
-int Menu(const char *titulo, const char *opciones[], int tamanio);
+int Menu(const char* titulo, const char* opciones[], int tamanio);
 void Induccion();
+void CalcularCombinacion();
+void BusquedaSecuencial();
+unsigned long long factorial(int num);
+unsigned long long combinacion(int n, int r);
+
 int main()
 {
     Menu_Principal();
@@ -29,7 +34,7 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-int Menu(const char *titulo, const char *opciones[], int tamanio)
+int Menu(const char* titulo, const char* opciones[], int tamanio)
 {
     int opcionSelec = 1, tecla;
     bool seguir = true;
@@ -48,7 +53,7 @@ int Menu(const char *titulo, const char *opciones[], int tamanio)
         }
         do
         {
-            tecla = getch();
+            tecla = _getch();  // Reemplazo de getch() por _getch()
         } while (tecla != TECLA_ARRIBA && tecla != TECLA_ABAJO && tecla != ENTER);
 
         switch (tecla)
@@ -79,8 +84,8 @@ void Menu_Principal()
 {
     bool seguir = true;
 
-    const char *titulo = "Menu Principal";
-    const char *opciones[] = {"Permutacion", "Combinacion", "Recursion", "Induccion", "Ordenacion", "Busqueda", "Salir"};
+    const char* titulo = "Menu Principal";
+    const char* opciones[] = { "Permutacion", "Combinacion", "Recursion", "Induccion", "Ordenacion", "Busqueda", "Salir" };
     int opcion, numop = 7, A[dim];
     do
     {
@@ -91,7 +96,7 @@ void Menu_Principal()
 
             break;
         case 2:
-
+            CalcularCombinacion();
             break;
         case 3:
 
@@ -103,12 +108,13 @@ void Menu_Principal()
             LlenarArregloQuickSort(A);
             break;
         case 6:
-
+            BusquedaSecuencial();
             break;
         case 7:
             seguir = false;
             break;
         }
+        system("pause");
     } while (seguir);
 }
 
@@ -186,21 +192,93 @@ void mostrarArreglo(int A[dim], int tamanio)
 
 void Induccion()
 {
-    int  cont = 0,aux,n;
+    int cont = 0, aux, n;
     bool aprobar;
     cout << "Comprobar que todos los numeros pares pueden ser representados con 2n,\n";
     cout << "donde n son valores naturales desde el -inf hasta el inf";
 
-        cout<<"Paso 1, n=1"<<endl;
-        n=1;
-        cout<<"f(1)= 2*1"<<endl;
-        cout<<"f(1)="<<2*n<<endl;
-        cout<<"Paso 2, k=n";
-        cout<<"Paso 3, probar que ";
-        cout<<"f(k+1)-f(k)"<<endl;
-        cout<<"2(k+1)-2k=2n"<<endl;
-        cout<<"2k+2-2k=2n"<<endl;
-        cout<<"2=2n"<<endl;
-        cout<<"Volviendo al menu principal";
-        system("pause");
+    cout << "Paso 1, n=1" << endl;
+    n = 1;
+    cout << "f(1)= 2*1" << endl;
+    cout << "f(1)=" << 2 * n << endl;
+    cout << "Paso 2, k=n";
+    cout << "Paso 3, probar que ";
+    cout << "f(k+1)-f(k)" << endl;
+    cout << "2(k+1)-2k=2n" << endl;
+    cout << "2k+2-2k=2n" << endl;
+    cout << "2=2n" << endl;
+    cout << "Volviendo al menu principal";
+}
+
+unsigned long long factorial(int num)
+{
+    if (num == 0)
+        return 1;
+    unsigned long long result = 1;
+    for (int i = 1; i <= num; i++)
+        result *= i;
+    return result;
+}
+
+unsigned long long combinacion(int n, int r)
+{
+    return factorial(n) / (factorial(r) * factorial(n - r));
+}
+
+void CalcularCombinacion()
+{
+    int n, r;
+    cout << "Ingrese el valor de n: ";
+    cin >> n;
+    cout << "Ingrese el valor de r: ";
+    cin >> r;
+
+    if (r > n || n < 0 || r < 0)
+    {
+        cout << "Valores invalidos. Asegurese de que n >= r y ambos sean no negativos." << endl;
+        return;
+    }
+
+    unsigned long long resultado = combinacion(n, r);
+    cout << "Las combinaciones de " << n << " sobre " << r << " son: " << resultado << endl;
+}
+
+void BusquedaSecuencial()
+{
+    int A[dim], tamanio, numero, posicion = -1;
+    cout << "Ingrese el tamaño del arreglo (1 - 100): ";
+    cin >> tamanio;
+
+    if (tamanio < 1 || tamanio > 100) {
+        cout << "Tamaño invalido. Volviendo al menu principal." << endl;
+        return;
+    }
+
+    cout << "Ingrese los elementos del arreglo:" << endl;
+    for (int i = 0; i < tamanio; i++)
+    {
+        cout << "Elemento " << i + 1 << ": ";
+        cin >> A[i];
+    }
+
+    cout << "Ingrese el numero a buscar: ";
+    cin >> numero;
+
+    for (int i = 0; i < tamanio; i++)
+    {
+        if (A[i] == numero)
+        {
+            posicion = i;
+            break;
+        }
+    }
+
+    if (posicion != -1)
+    {
+        cout << "El numero " << numero << " se encuentra en la posicion " << posicion + 1 << " del arreglo." << endl;
+    }
+    else
+    {
+        cout << "El numero " << numero << " no se encuentra en el arreglo." << endl;
+    }
 }
