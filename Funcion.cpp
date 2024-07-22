@@ -2,8 +2,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <conio.h>
-#include <windows.h>
 #include <math.h>
+#include <windows.h>
 using namespace std;
 #define TECLA_ARRIBA 72
 #define TECLA_ABAJO 80
@@ -11,20 +11,19 @@ using namespace std;
 
 // Prototipos de funciones
 void LlenarArregloQuickSort(int A[dim]);
-void Recursion();
-void Permuta();
 void Quicksort(int A[dim], int primero, int ultimo);
 void mostrarArreglo(int A[dim], int tamanio);
 void Menu_Principal();
 void gotoxy(int x, int y);
-int Menu(const char *titulo, const char *opciones[], int tamanio);
+void Permuta();
+int Menu(const char* titulo, const char* opciones[], int tamanio);
 void Induccion();
 unsigned long long factorial(int num);
 void CalcularCombinacion();
 void BusquedaSecuencial();
+void Recursion();
 unsigned long long factorial(int num);
 unsigned long long combinacion(int n, int r);
-
 
 int main()
 {
@@ -42,7 +41,7 @@ void gotoxy(int x, int y)
 }
 
 // Función para mostrar el menú y manejar la navegación
-int Menu(const char *titulo, const char *opciones[], int tamanio)
+int Menu(const char* titulo, const char* opciones[], int tamanio)
 {
     int opcionSelec = 1, tecla;
     bool seguir = true;
@@ -93,8 +92,8 @@ void Menu_Principal()
 {
     bool seguir = true;
 
-    const char *titulo = "Menu Principal";
-    const char *opciones[] = {"Permutacion", "Combinacion", "Recursion", "Induccion", "Ordenacion", "Busqueda", "Salir"};
+    const char* titulo = "Menu Principal";
+    const char* opciones[] = { "Permutacion", "Combinacion", "Recursion", "Induccion", "Ordenacion", "Busqueda", "Salir" };
     int opcion, numop = 7, A[dim];
     do
     {
@@ -102,25 +101,32 @@ void Menu_Principal()
         switch (opcion)
         {
         case 1:
+        system("cls");
             Permuta();
             break;
         case 2:
+        system("cls");
             CalcularCombinacion();
             break;
         case 3:
+        system("cls");
             Recursion();
             break;
         case 4:
+        system("cls");
             Induccion();
             break;
         case 5:
+        system("cls");
             LlenarArregloQuickSort(A);
             break;
         case 6:
+        system("cls");
             BusquedaSecuencial();
             break;
         case 7:
             seguir = false;
+            cout<<"\n";
             break;
         }
         system("pause");
@@ -266,7 +272,7 @@ void BusquedaSecuencial()
     int A[dim], tamanio, numero, posicion = -1;
     cout << "Ingrese el tamaño del arreglo (1 - 100): ";
     cin >> tamanio;
-    
+
     if (tamanio < 1 || tamanio > 100) {
         cout << "Tamaño invalido. Volviendo al menu principal." << endl;
         return;
@@ -291,7 +297,6 @@ void BusquedaSecuencial()
             break;
         }
     }
-
     // Mostrar resultado
     if (posicion != -1)
     {
@@ -300,12 +305,8 @@ void BusquedaSecuencial()
     else
     {
         cout << "El numero " << numero << " no se encuentra en el arreglo." << endl;
-
-
-
     }
 }
-
 
 // Función recursiva para calcular el n-ésimo número de Fibonacci
 long long fibonacci(int n) {
@@ -340,7 +341,6 @@ long long permutacionCircular(int n) {
 long long permutacionConRepeticion(int n, int r) {
     return pow(n, r);
 }
-
 void Permuta() {
     int opcion, n, r;
 
