@@ -3,22 +3,27 @@
 #include <cstdlib>
 #include <conio.h>
 #include <windows.h>
+#include <math.h>
 using namespace std;
 #define TECLA_ARRIBA 72
 #define TECLA_ABAJO 80
 #define ENTER 13
 
 void LlenarArregloQuickSort(int A[dim]);
+void Recursion();
+void Permuta();
 void Quicksort(int A[dim], int primero, int ultimo);
 void mostrarArreglo(int A[dim], int tamanio);
 void Menu_Principal();
 void gotoxy(int x, int y);
 int Menu(const char* titulo, const char* opciones[], int tamanio);
 void Induccion();
+
 void CalcularCombinacion();
 void BusquedaSecuencial();
 unsigned long long factorial(int num);
 unsigned long long combinacion(int n, int r);
+
 
 int main()
 {
@@ -93,13 +98,13 @@ void Menu_Principal()
         switch (opcion)
         {
         case 1:
-
+            Permuta();
             break;
         case 2:
             CalcularCombinacion();
             break;
         case 3:
-
+            Recursion();
             break;
         case 4:
             Induccion();
@@ -225,6 +230,7 @@ unsigned long long combinacion(int n, int r)
     return factorial(n) / (factorial(r) * factorial(n - r));
 }
 
+
 void CalcularCombinacion()
 {
     int n, r;
@@ -280,5 +286,8 @@ void BusquedaSecuencial()
     else
     {
         cout << "El numero " << numero << " no se encuentra en el arreglo." << endl;
+
+
+
     }
 }
