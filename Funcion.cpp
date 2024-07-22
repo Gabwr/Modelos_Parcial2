@@ -98,12 +98,14 @@ void Menu_Principal()
         {
         case 1:
             // Placeholder para Permutacion
+            // Permuta();  // Uncomment when implemented
             break;
         case 2:
             CalcularCombinacion();
             break;
         case 3:
             // Placeholder para Recursion
+            // Recursion();  // Uncomment when implemented
             break;
         case 4:
             Induccion();
@@ -296,3 +298,4 @@ void BusquedaSecuencial()
         cout << "El numero " << numero << " no se encuentra en el arreglo." << endl;
     }
 }
+
