@@ -102,21 +102,21 @@ void Menu_Principal()
         switch (opcion)
         {
         case 1:
-<<<<<<< HEAD
+
             // Placeholder para Permutacion
-=======
-            Permuta();
->>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
+            
+            Permuta();  
+
             break;
         case 2:
             CalcularCombinacion();
             break;
         case 3:
-<<<<<<< HEAD
+
             // Placeholder para Recursion
-=======
-            Recursion();
->>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
+
+            Recursion(); 
+
             break;
         case 4:
             Induccion();
@@ -248,11 +248,13 @@ unsigned long long combinacion(int n, int r)
     return factorial(n) / (factorial(r) * factorial(n - r));
 }
 
-<<<<<<< HEAD
-// Función para calcular y mostrar las combinaciones
-=======
 
->>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
+// Función para calcular y mostrar las combinaciones
+
+
+
+
+
 void CalcularCombinacion()
 {
     int n, r;
@@ -313,6 +315,6 @@ void BusquedaSecuencial()
         cout << "El numero " << numero << " no se encuentra en el arreglo." << endl;
 
 
-
+        
     }
 }
