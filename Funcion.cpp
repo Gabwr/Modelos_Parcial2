@@ -9,6 +9,7 @@ using namespace std;
 #define TECLA_ABAJO 80
 #define ENTER 13
 
+// Prototipos de funciones
 void LlenarArregloQuickSort(int A[dim]);
 void Recursion();
 void Permuta();
@@ -16,7 +17,7 @@ void Quicksort(int A[dim], int primero, int ultimo);
 void mostrarArreglo(int A[dim], int tamanio);
 void Menu_Principal();
 void gotoxy(int x, int y);
-int Menu(const char* titulo, const char* opciones[], int tamanio);
+int Menu(const char *titulo, const char *opciones[], int tamanio);
 void Induccion();
 
 void CalcularCombinacion();
@@ -31,6 +32,7 @@ int main()
     return 0;
 }
 
+// Función para posicionar el cursor en la consola
 void gotoxy(int x, int y)
 {
     COORD coord;
@@ -39,7 +41,8 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-int Menu(const char* titulo, const char* opciones[], int tamanio)
+// Función para mostrar el menú y manejar la navegación
+int Menu(const char *titulo, const char *opciones[], int tamanio)
 {
     int opcionSelec = 1, tecla;
     bool seguir = true;
@@ -85,12 +88,13 @@ int Menu(const char* titulo, const char* opciones[], int tamanio)
     return opcionSelec;
 }
 
+// Función principal del menú
 void Menu_Principal()
 {
     bool seguir = true;
 
-    const char* titulo = "Menu Principal";
-    const char* opciones[] = { "Permutacion", "Combinacion", "Recursion", "Induccion", "Ordenacion", "Busqueda", "Salir" };
+    const char *titulo = "Menu Principal";
+    const char *opciones[] = {"Permutacion", "Combinacion", "Recursion", "Induccion", "Ordenacion", "Busqueda", "Salir"};
     int opcion, numop = 7, A[dim];
     do
     {
@@ -98,13 +102,21 @@ void Menu_Principal()
         switch (opcion)
         {
         case 1:
+<<<<<<< HEAD
+            // Placeholder para Permutacion
+=======
             Permuta();
+>>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
             break;
         case 2:
             CalcularCombinacion();
             break;
         case 3:
+<<<<<<< HEAD
+            // Placeholder para Recursion
+=======
             Recursion();
+>>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
             break;
         case 4:
             Induccion();
@@ -123,6 +135,7 @@ void Menu_Principal()
     } while (seguir);
 }
 
+// Función para llenar un arreglo y ordenarlo usando QuickSort
 void LlenarArregloQuickSort(int A[dim])
 {
     int tamanio = -1;
@@ -148,6 +161,7 @@ void LlenarArregloQuickSort(int A[dim])
     mostrarArreglo(A, tamanio);
 }
 
+// Algoritmo de QuickSort para ordenar un arreglo
 void Quicksort(int A[dim], int primero, int ultimo)
 {
     int posipivote = (primero + ultimo) / 2;
@@ -187,6 +201,7 @@ void Quicksort(int A[dim], int primero, int ultimo)
     }
 }
 
+// Función para mostrar un arreglo
 void mostrarArreglo(int A[dim], int tamanio)
 {
     for (int i = 0; i <= tamanio - 1; i++)
@@ -195,6 +210,7 @@ void mostrarArreglo(int A[dim], int tamanio)
     }
 }
 
+// Ejemplo de función de inducción matemática
 void Induccion()
 {
     int cont = 0, aux, n;
@@ -215,6 +231,7 @@ void Induccion()
     cout << "Volviendo al menu principal";
 }
 
+// Función para calcular el factorial de un número
 unsigned long long factorial(int num)
 {
     if (num == 0)
@@ -225,12 +242,17 @@ unsigned long long factorial(int num)
     return result;
 }
 
+// Función para calcular las combinaciones (nCr)
 unsigned long long combinacion(int n, int r)
 {
     return factorial(n) / (factorial(r) * factorial(n - r));
 }
 
+<<<<<<< HEAD
+// Función para calcular y mostrar las combinaciones
+=======
 
+>>>>>>> 7fc0b71fb952f45c17e4504a69af7ddce3384efd
 void CalcularCombinacion()
 {
     int n, r;
@@ -249,12 +271,13 @@ void CalcularCombinacion()
     cout << "Las combinaciones de " << n << " sobre " << r << " son: " << resultado << endl;
 }
 
+// Función para realizar la búsqueda secuencial en un arreglo
 void BusquedaSecuencial()
 {
     int A[dim], tamanio, numero, posicion = -1;
     cout << "Ingrese el tamaño del arreglo (1 - 100): ";
     cin >> tamanio;
-
+    
     if (tamanio < 1 || tamanio > 100) {
         cout << "Tamaño invalido. Volviendo al menu principal." << endl;
         return;
@@ -270,6 +293,7 @@ void BusquedaSecuencial()
     cout << "Ingrese el numero a buscar: ";
     cin >> numero;
 
+    // Búsqueda secuencial
     for (int i = 0; i < tamanio; i++)
     {
         if (A[i] == numero)
@@ -279,6 +303,7 @@ void BusquedaSecuencial()
         }
     }
 
+    // Mostrar resultado
     if (posicion != -1)
     {
         cout << "El numero " << numero << " se encuentra en la posicion " << posicion + 1 << " del arreglo." << endl;
