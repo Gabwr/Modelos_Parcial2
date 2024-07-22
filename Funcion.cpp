@@ -16,8 +16,14 @@ void Quicksort(int A[dim], int primero, int ultimo);
 void mostrarArreglo(int A[dim], int tamanio);
 void Menu_Principal();
 void gotoxy(int x, int y);
-int Menu(const char *titulo, const char *opciones[], int tamanio);
+int Menu(const char* titulo, const char* opciones[], int tamanio);
 void Induccion();
+
+void CalcularCombinacion();
+void BusquedaSecuencial();
+unsigned long long factorial(int num);
+unsigned long long combinacion(int n, int r);
+
 
 int main()
 {
@@ -33,7 +39,7 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-int Menu(const char *titulo, const char *opciones[], int tamanio)
+int Menu(const char* titulo, const char* opciones[], int tamanio)
 {
     int opcionSelec = 1, tecla;
     bool seguir = true;
@@ -52,7 +58,7 @@ int Menu(const char *titulo, const char *opciones[], int tamanio)
         }
         do
         {
-            tecla = getch();
+            tecla = _getch();  // Reemplazo de getch() por _getch()
         } while (tecla != TECLA_ARRIBA && tecla != TECLA_ABAJO && tecla != ENTER);
 
         switch (tecla)
@@ -83,8 +89,8 @@ void Menu_Principal()
 {
     bool seguir = true;
 
-    const char *titulo = "Menu Principal";
-    const char *opciones[] = {"Permutacion", "Combinacion", "Recursion", "Induccion", "Ordenacion", "Busqueda", "Salir"};
+    const char* titulo = "Menu Principal";
+    const char* opciones[] = { "Permutacion", "Combinacion", "Recursion", "Induccion", "Ordenacion", "Busqueda", "Salir" };
     int opcion, numop = 7, A[dim];
     do
     {
@@ -95,7 +101,7 @@ void Menu_Principal()
             Permuta();
             break;
         case 2:
-
+            CalcularCombinacion();
             break;
         case 3:
             Recursion();
@@ -107,12 +113,13 @@ void Menu_Principal()
             LlenarArregloQuickSort(A);
             break;
         case 6:
-
+            BusquedaSecuencial();
             break;
         case 7:
             seguir = false;
             break;
         }
+        system("pause");
     } while (seguir);
 }
 
@@ -190,88 +197,97 @@ void mostrarArreglo(int A[dim], int tamanio)
 
 void Induccion()
 {
-    int  cont = 0,aux,n;
+    int cont = 0, aux, n;
     bool aprobar;
     cout << "Comprobar que todos los numeros pares pueden ser representados con 2n,\n";
     cout << "donde n son valores naturales desde el -inf hasta el inf";
 
-        cout<<"Paso 1, n=1"<<endl;
-        n=1;
-        cout<<"f(1)= 2*1"<<endl;
-        cout<<"f(1)="<<2*n<<endl;
-        cout<<"Paso 2, k=n";
-        cout<<"Paso 3, probar que ";
-        cout<<"f(k+1)-f(k)"<<endl;
-        cout<<"2(k+1)-2k=2n"<<endl;
-        cout<<"2k+2-2k=2n"<<endl;
-        cout<<"2=2n"<<endl;
-        cout<<"Volviendo al menu principal";
-        system("pause");
+    cout << "Paso 1, n=1" << endl;
+    n = 1;
+    cout << "f(1)= 2*1" << endl;
+    cout << "f(1)=" << 2 * n << endl;
+    cout << "Paso 2, k=n";
+    cout << "Paso 3, probar que ";
+    cout << "f(k+1)-f(k)" << endl;
+    cout << "2(k+1)-2k=2n" << endl;
+    cout << "2k+2-2k=2n" << endl;
+    cout << "2=2n" << endl;
+    cout << "Volviendo al menu principal";
+}
+
+unsigned long long factorial(int num)
+{
+    if (num == 0)
+        return 1;
+    unsigned long long result = 1;
+    for (int i = 1; i <= num; i++)
+        result *= i;
+    return result;
+}
+
+unsigned long long combinacion(int n, int r)
+{
+    return factorial(n) / (factorial(r) * factorial(n - r));
 }
 
 
-// Función recursiva para calcular el n-ésimo número de Fibonacci
-long long fibonacci(int n) {
-    if (n == 0) return 0; // Caso base 1
-    if (n == 1) return 1; // Caso base 2
-    return fibonacci(n - 1) + fibonacci(n - 2); // Paso recursivo
-}
-
-void Recursion() {
-    int n;
-    cout << "Ingrese el valor de n para calcular el n-ésimo número de Fibonacci: ";
+void CalcularCombinacion()
+{
+    int n, r;
+    cout << "Ingrese el valor de n: ";
     cin >> n;
+    cout << "Ingrese el valor de r: ";
+    cin >> r;
 
-    // Verificar que el usuario ingrese un número no negativo
-    if (n < 0) {
-        cout << "Por favor, ingrese un número no negativo." << std::endl;
-    } else {
-        cout << "El " << n << "-ésimo número de Fibonacci es: " << fibonacci(n) << endl;
+    if (r > n || n < 0 || r < 0)
+    {
+        cout << "Valores invalidos. Asegurese de que n >= r y ambos sean no negativos." << endl;
+        return;
     }
+
+    unsigned long long resultado = combinacion(n, r);
+    cout << "Las combinaciones de " << n << " sobre " << r << " son: " << resultado << endl;
 }
 
-// Función para calcular factorial
-long long factorial(int n) {
-    if (n == 0) return 1;
-    return n * factorial(n - 1);
-}
-// Permutaciones normales
-long long permutacionNormal(int n, int r) {
-    return factorial(n) / factorial(n - r);
-}
-// Permutaciones circulares
-long long permutacionCircular(int n) {
-    return factorial(n - 1);
-}
-// Permutaciones con repetición
-long long permutacionConRepeticion(int n, int r) {
-    return pow(n, r);
-}
+void BusquedaSecuencial()
+{
+    int A[dim], tamanio, numero, posicion = -1;
+    cout << "Ingrese el tamaño del arreglo (1 - 100): ";
+    cin >> tamanio;
 
-void Permuta() {
-    int opcion, n, r;
+    if (tamanio < 1 || tamanio > 100) {
+        cout << "Tamaño invalido. Volviendo al menu principal." << endl;
+        return;
+    }
 
-    std::cout << "Seleccione el tipo de permutación:\n";
-    std::cout << "1. Normal\n2. Circular\n3. Con repetición\n";
-    std::cin >> opcion;
+    cout << "Ingrese los elementos del arreglo:" << endl;
+    for (int i = 0; i < tamanio; i++)
+    {
+        cout << "Elemento " << i + 1 << ": ";
+        cin >> A[i];
+    }
 
-    switch (opcion) {
-        case 1:
-            std::cout << "Ingrese n y r: ";
-            std::cin >> n >> r;
-            std::cout << "Permutación normal: " << permutacionNormal(n, r) << std::endl;
+    cout << "Ingrese el numero a buscar: ";
+    cin >> numero;
+
+    for (int i = 0; i < tamanio; i++)
+    {
+        if (A[i] == numero)
+        {
+            posicion = i;
             break;
-        case 2:
-            std::cout << "Ingrese n: ";
-            std::cin >> n;
-            std::cout << "Permutación circular: " << permutacionCircular(n) << std::endl;
-            break;
-        case 3:
-            std::cout << "Ingrese n y r: ";
-            std::cin >> n >> r;
-            std::cout << "Permutación con repetición: " << permutacionConRepeticion(n, r) << std::endl;
-            break;
-        default:
-            std::cout << "Opción no válida." << std::endl;
+        }
+    }
+
+    if (posicion != -1)
+    {
+        cout << "El numero " << numero << " se encuentra en la posicion " << posicion + 1 << " del arreglo." << endl;
+    }
+    else
+    {
+        cout << "El numero " << numero << " no se encuentra en el arreglo." << endl;
+
+
+
     }
 }
